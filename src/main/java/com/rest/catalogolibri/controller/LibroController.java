@@ -27,7 +27,7 @@ public class LibroController {
 		this.ls = ls;
 	}
 
-	@RequestMapping(value = "aggiorna/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/aggiorna/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<LibroDto> aggiornaLibro(@Valid @RequestBody LibroDto l, @PathVariable("id") long id) {
 
 		l.setId(id);
@@ -39,7 +39,7 @@ public class LibroController {
 		return new ResponseEntity<LibroDto>(l, HttpStatus.OK);
 	}
 
-	@RequestMapping("cerca/{id}")
+	@RequestMapping("/cerca/{id}")
 	public LibroDto cercaLibro(@PathVariable("id") long id) {
 
 		LibroDto l = ls.getLibroById(id);

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Catalogo Libri</title>
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+	rel="stylesheet" />
+<link
+	href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+	rel="stylesheet" />
+<link rel="stylesheet" href="/css/styles.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+body {
+	font-family: 'Roboto', sans-serif;
+	margin: 0;
+	padding: 0;
+	display: flex;
+}
+
+.sidebar {
+	width: 250px;
+	background-color: #000;
+	color: #fff;
+	height: 100vh;
+	position: fixed;
+	top: 0;
+	left: 0;
+	overflow-y: auto;
+}
+
+.sidebar ul {
+	list-style-type: none;
+	padding: 0;
+}
+
+.sidebar ul li {
+	padding: 15px;
+	cursor: pointer;
+	position: relative;
+}
+
+.sidebar ul li:hover {
+	background-color: #333;
+}
+
+.sidebar ul li i {
+	margin-right: 10px;
+}
+
+.sidebar ul li ul {
+	display: none;
+	list-style-type: none;
+	padding-left: 20px;
+}
+
+.sidebar ul li:hover ul {
+	display: block;
+}
+
+.content {
+	margin-left: 250px;
+	padding: 20px;
+	width: calc(100% - 250px);
+}
+
+.content h1 {
+	text-align: center;
+	margin-top: 50px;
+}
+
+.content table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 20px;
+}
+
+.content th, .content td {
+	border: 1px solid #ddd;
+	padding: 8px;
+	text-align: left;
+}
+
+.content th {
+	background-color: #f2f2f2;
+}
+</style>
+</head>
+<body>
+
+	<div class="content">
+		<h1 style="font-size: 3rem">CATALOGO LIBRI</h1>
+		<table>
+			<thead>
+				<tr>
+					<th>Titolo</th>
+					<th>Autore</th>
+					<th>Genere</th>
+					<th>Pagine</th>
+					<th>Pubblicazione</th>
+					<th>Disponibilità</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="libro : ${lista}">
+					<td th:text="${libro.titolo}"></td>
+					<td
+						th:text="${libro.autore != null ? libro.autore.nome + ', ' + libro.autore.cognome : 'Autore sconosciuto'}"></td>
+					<td th:text="${libro.genere}"></td>
+					<td th:text="${libro.pagine}"></td>
+					<td th:text="${libro.dataPubblicazione}"></td>
+					<td th:text="${libro.disponibile}"></td>
+			</tbody>
+		</table>
+	</div>
+	
+	<script>
+		function toggleSidebar() {
+			const sidebar = document.querySelector('.sidebar');
+			const toggleBtn = document.querySelector('.toggle-btn');
+			if (sidebar.classList.contains('closed')) {
+				sidebar.classList.remove('closed');
+				sidebar.classList.add('open');
+			} else {
+				sidebar.classList.remove('open');
+				sidebar.classList.add('closed');
+			}
+		}
+	</script>
+</body>
+</html>

@@ -18,7 +18,7 @@ import com.rest.catalogolibri.service.ICategoriaService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("api/categoria")
+@RequestMapping("/api/categoria")
 public class CategoriaController {
 
 	private ICategoriaService cs;
@@ -28,7 +28,7 @@ public class CategoriaController {
 		this.cs = cs;
 	}
 
-	@RequestMapping(value = "aggiorna/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/aggiorna/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<CategoriaDto> aggiornaCategoria(@Valid @RequestBody CategoriaDto c,
 			@PathVariable("id") long id) {
 
@@ -41,7 +41,7 @@ public class CategoriaController {
 		return new ResponseEntity<CategoriaDto>(c, HttpStatus.OK);
 	}
 
-	@RequestMapping("cerca/{id}")
+	@RequestMapping("/cerca/{id}")
 	public CategoriaDto cercaCategoria(@PathVariable("id") long id) {
 
 		CategoriaDto c = cs.getCategoriaById(id);

@@ -17,7 +17,7 @@ import com.rest.catalogolibri.service.IAutoreService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("api/autore")
+@RequestMapping("/api/autore")
 public class AutoreController {
 
 	private IAutoreService as;
@@ -27,7 +27,7 @@ public class AutoreController {
 		this.as = as;
 	}
 
-	@RequestMapping(value = "aggiorna/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/aggiorna/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<AutoreDto> aggiornaAutore(@Valid @RequestBody AutoreDto a, @PathVariable("id") long id) {
 
 		a.setId(id);
@@ -39,7 +39,7 @@ public class AutoreController {
 		return new ResponseEntity<AutoreDto>(a, HttpStatus.OK);
 	}
 
-	@RequestMapping("cerca/{id}")
+	@RequestMapping("/cerca/{id}")
 	public AutoreDto cercaAutore(@PathVariable("id") long id) {
 
 		AutoreDto a = as.getAutoreById(id);
